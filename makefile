@@ -1,7 +1,7 @@
 CC = gcc
 FLAGS = -Wall -g -fPIC
 
-all: cmp copy
+all: cmp copy encode decode
 
 cmp: maincmp.o cmp.o
 	$(CC) $(FLAGS) cmp.o maincmp.o -o cmp
@@ -17,6 +17,18 @@ copy.o: copy.c copy.h
 maincopy.o: maincopy.c copy.c copy.h
 	$(CC) $(FLAGS) -c maincopy.c
 
+encode:  encode.c libA libB
+	gcc encode.c -fPIC -ldl -o encode
+decode:  decode.c libA libB
+	gcc decode.c -fPIC -ldl -o decode
+
+libA: codecA.h codecA.c
+	$(CC) -shared codecA.c -fPIC -o libcodecA.so
+
+libB: codecB.h codecB.c
+	$(CC) -shared codecB.c -fPIC -o libcodecB.so
+
+
 .PHONY: clean all
 clean: 
-	rm -f  *.o cmp copy
+	rm -f *.so *.o cmp copy encode decode
