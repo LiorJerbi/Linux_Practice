@@ -20,7 +20,7 @@ int main() {
 		// Handles CTRL+C Signal and ignores it.
 		signal(SIGINT,SIG_IGN);
 
-	    printf("hello: %d\n",(int)getpid());
+	    printf("Welcome to stshell: ");
 	    fgets(command, 1024, stdin);
 	    command[strlen(command) - 1] = '\0'; // replace \n with \0
 

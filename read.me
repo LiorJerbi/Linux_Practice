@@ -1,0 +1,22 @@
+First of all you need unzip all the files from the zip folder.
+After that you need to write in the command line the command 'make'.
+Then:
+	1)cmp: for using the cmp tool you need to write in the command line the next command:
+		./cmp <file1> <file2> [-v,-i](Optional Flags).
+		#-v -> for 'verbose' that will print to your screen if succeeded or failed.
+		#-i -> for 'ignore' case that will ignore Upper/Lower case.
+	
+	2)copy:	for using the copy tool you need to write in the command line the next command:
+		./copy <file1> <file2> [-v,-f](Optional Flags).
+		#-v -> for 'verbose' that will print to your screen if succeeded or failed.
+		#-f -> for 'force' forced overwrite the target file .
+	
+	3)encode/decode: for using the encode tool you need to write in the command line the next command:
+		./(encode/decode) <codec> <message>
+		##Optional codec:
+		#codecA -> covert all lower case chars to upper case, and all upper case to lower case.
+			   All other chars will remain unchanged.
+		#codecB -> convert all chars to the 3-rd next char (adding a number of 3 to the ascii val).
+		
+		#examples: “./encode codecA aaaBBB” will return “AAAbbb”
+			   “./decode codecB EEEddd” will return “BBBaaa”
