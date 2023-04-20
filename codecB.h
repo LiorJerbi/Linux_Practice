@@ -1,8 +1,8 @@
 #ifndef _CODECB_
 #define _CODECB_
 
-char* enB(char* ecode);
+void enB(char** dcode);
 
-char* deB(char* dcode);
+void deB(char** dcode);
 
 #endif
