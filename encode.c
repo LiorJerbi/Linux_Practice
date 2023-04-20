@@ -6,7 +6,7 @@
 #include <stdlib.h>
 
 
-char* (*encode)(char *);
+void (*encode)(char **);
 
 bool init_library(char* lib)
 {
@@ -17,7 +17,7 @@ bool init_library(char* lib)
         if (NULL == hdl){
 		    return false;
         }
-        encode = (char*(*)(char *))dlsym(hdl,"convert_letters");
+        encode = (void(*)(char **))dlsym(hdl,"convert_letters");
         if (NULL == encode)
         {
             return false;
@@ -30,7 +30,7 @@ bool init_library(char* lib)
         if (NULL == hdl){
 		    return false;
         }
-        encode = (char*(*)(char *))dlsym(hdl,"enB");
+        encode = (void(*)(char **))dlsym(hdl,"enB");
         if (NULL == encode)
         {
             return false;
@@ -46,13 +46,13 @@ bool init_library(char* lib)
 
 
 int main(int argc, char* argv[]){
-    if(argc < 3){
+      if(argc < 3){
         printf("Usage : encode <codec> <message>");
         return -1;
     }
-    char* ans;
+    char* ans = argv[2];
     if (init_library(argv[1])){
-		ans = encode(argv[2]);
+		encode(&ans);
         printf("%s\n",ans);
     }
 	else
